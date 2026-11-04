@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="teste.css">
+</head>
+<body>
+    <div class="area-mensagens">
+    <div class="mensagem sucesso">
+        <ion-icon name="checkmark-circle-outline"></ion-icon>
+        <span>Login realizado com sucesso!</span>
+        <button class="fechar">
+            <ion-icon name="close-outline"></ion-icon>
+        </button>
+    </div>
+
+    <div class="mensagem erro">
+        <ion-icon name="alert-circle-outline"></ion-icon>
+        <span>Login ou senha incorretos!</span>
+        <button class="fechar">
+            <ion-icon name="close-outline"></ion-icon>
+        </button>
+    </div>
+</div>
+
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>    
+
+    <script>
+    const botoesFechar = document.querySelectorAll(".fechar");
+    botoesFechar.forEach(function(botao) {
+        botao.addEventListener("click", function() {
+            const mensagem = botao.closest(".mensagem");
+            mensagem.remove();
+        });
+    });
+    </script>
+</body>
+</html>
