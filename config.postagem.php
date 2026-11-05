@@ -18,11 +18,12 @@ if ($result = mysqli_query($conn, $sql)) {
 }
 
 
-function deletarPostagem($id, $conn){
+// function deletarPostagem($id, $conn){
 
     
 
-};
+// };
+
 /*
 listarPostagem();
 
