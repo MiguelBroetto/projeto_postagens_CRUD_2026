@@ -148,7 +148,7 @@ $logado = 0 // usuario errou. apresentar o menu sem logar
          ' 
          '.criarLinkMenu("cadastrar-usuario.php", '<ion-icon name="person-add-outline"></ion-icon>', "Cadastrar Usuário").
          '
-         '.criarLinkMenu("listar_usuarios.php", '<ion-icon name="list-outline"></ion-icon>', "Listar").
+         '.criarLinkMenu("listar_usuarios.php", '<ion-icon name="list-outline"></ion-icon>', "Listar usuários").
          '      
          '.criarLinkMenu("sair.php", '<ion-icon name="exit-outline"></ion-icon>', "Sair").
          '  
