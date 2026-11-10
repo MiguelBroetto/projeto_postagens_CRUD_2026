@@ -1,24 +1,20 @@
 <?php
-
-function verificaMensagem() {
-    
+function verificaMensagem() {  
 $tipo = "";
 $mensagem = "";
 
-if(isset($_GET["mensagem"]))
-{
-    $mensagem = $_GET["mensagem"];
-}
+    if(isset($_GET["mensagem"]))
+    {
+        $mensagem = $_GET["mensagem"];
+    }
 
-if(isset($_GET["tipo"]))
-{
-    $tipo = $_GET["tipo"];
-}
+    if(isset($_GET["tipo"]))
+    {
+        $tipo = $_GET["tipo"];
+    }
 
-
-
-if($mensagem != "")
-   echo criaMensagem($tipo, $mensagem);
+    if($mensagem != "")
+    echo criaMensagem($tipo, $mensagem);
 
 }
 
@@ -43,7 +39,7 @@ function criarTopo($logado = 0) {
 
 function criaFormularioCadastroUsuario() {
     return '<main>
-    <form class="form-login" action="inserir_usuario.php" method="POST">
+    <form class="form-login" action="inserir_usuarios.php" method="POST">
 
         <h2>Cadastrar Usuário</h2>
 
@@ -65,17 +61,6 @@ function criaFormularioCadastroUsuario() {
                 type="password" 
                 name="senha" 
                 placeholder="Senha"
-                required
-            >
-        </div>
-
-        <div class="campo">
-            <ion-icon name="lock-closed-outline"></ion-icon>
-            <input 
-            class="input-login"
-                type="text" 
-                name="nome" 
-                placeholder="Nome"
                 required
             >
         </div>
@@ -144,14 +129,16 @@ $logado = 0 // usuario errou. apresentar o menu sem logar
         $html = '<nav>
          '.criarLinkMenu("perfil.php", '<ion-icon name="person-outline"></ion-icon>', "Perfil").
          '            
-        '.criarLinkMenu("posts.php", '<ion-icon name="add-outline"></ion-icon>', "Cadastrar Postagem").
+         '.criarLinkMenu("cadastrar-postagem.php", '<ion-icon name="add-circle-outline"></ion-icon>', "Cadastrar Postagem").
+         '  
+        '.criarLinkMenu("listar-postagem.php", '<ion-icon name="list-outline"></ion-icon>', "Listar Postagens").
          ' 
          '.criarLinkMenu("cadastrar-usuario.php", '<ion-icon name="person-add-outline"></ion-icon>', "Cadastrar Usuário").
-         '
-         '.criarLinkMenu("listar_usuarios.php", '<ion-icon name="list-outline"></ion-icon>', "Listar usuários").
-         '      
-         '.criarLinkMenu("sair.php", '<ion-icon name="exit-outline"></ion-icon>', "Sair").
          '  
+         '.criarLinkMenu("listar-usuarios.php", '<ion-icon name="list-outline"></ion-icon>', "Listar usuários").
+         '    
+         '.criarLinkMenu("sair.php", '<ion-icon name="exit-outline"></ion-icon>', "Sair").
+         '        
         </nav>';
     } else 
     {
@@ -285,5 +272,18 @@ function paginaRestrita($logado, $pagina = "login.php", $mensagem = "Necessário
     }
 }
 
+
+function buscar_usuario($identificador) {
+    $usuario = "";
+    $sql = "SELECT * FROM `usuarios` WHERE id = $identificador";
+    $resultado = mysqli_query($conn, $sql);
+    if(mysqli_num_rows($resultado)>0) {          
+        while($dados = mysqli_fetch_assoc($resultado)) {
+            $usuario =  $dados;
+        }
+    }
+    
+    return $usuario;
+}
 ?>
 
