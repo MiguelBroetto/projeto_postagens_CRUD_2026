@@ -2,7 +2,7 @@
 // CRUD postagem
 include('conexao.php');
 
-function buscar_postagem($identificador) {
+function buscar_postagem($identificador, $conn) {
     $postagem = "";
     $sql = "SELECT * FROM `postagem` WHERE id = $identificador";
     $resultado = mysqli_query($conn, $sql);
@@ -125,9 +125,9 @@ if(mysqli_num_rows($resultado) >0) {
 
 
 
-function editarPostagem($id, $titulo, $descricao, $data, $idUsuario, $conn) {
+function editarPostagem($id, $titulo, $descricao, $idUsuario, $conn) {
     
-    $sql = "UPDATE `postagem` SET `titulo` = '$titulo', `descricao` = '$descricao', `data` = '$data', `autor` = '$idUsuario' WHERE `postagem`.`id` = $id;";
+    $sql = "UPDATE `postagem` SET `titulo` = '$titulo', `descricao` = '$descricao', `autor` = '$idUsuario' WHERE `postagem`.`id` = $id;";
 
     $resultado = mysqli_query($conn, $sql);
 
@@ -142,6 +142,8 @@ function criarFormularioEdicaoPostagem($idPostagem, $tituloPostagem, $descricaoP
           method="POST">
 
         <h2>Editar Postagem</h2>
+
+        <input type="hidden" name="id" value="'.$idPostagem.'">
 
         <div class="campo">
             <label for="titulo">Título</label>
@@ -165,13 +167,13 @@ function criarFormularioEdicaoPostagem($idPostagem, $tituloPostagem, $descricaoP
                 rows="5"
                 placeholder="Digite a descrição da postagem"
                 required
-                value="'.$descricaoPostagem.'"
-            ></textarea>
+            >'.$descricaoPostagem.'
+            </textarea>
         </div>
 
         <button type="submit" class="btn ativo">
             <ion-icon name="save-outline"></ion-icon>
-            Cadastrar
+            Atualizar
         </button>
 
         <button type="reset" class="btn">

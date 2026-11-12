@@ -11,7 +11,7 @@ paginaRestrita($logado, "login.php", "Necessário ter acesso para realizar o Cad
 //echo criarTopo();
 // $conn esta variavel de conexao já está construida
 $id = $_GET["id"];
-$postagem = buscar_postagem($id);
+$postagem = buscar_postagem($id, $conn);
 if($postagem != "") {
     //echo "Achei a postagem ". $postagem["id"] . " com o titulo ". $postagem["titulo"];
     echo criarTopo($logado);
@@ -19,13 +19,6 @@ if($postagem != "") {
     echo criarFormularioEdicaoPostagem($postagem["id"], $postagem["titulo"], $postagem["descricao"]);    
     echo criarRodape();
 } else {
-    header("location: listar-postagens.php?tipo=0&mensagem=Postagem com id [$id] não foi encontrado.");
+    header("location: listar-postagem.php?tipo=0&mensagem=Postagem com id [$id] não foi encontrado.");
 }
 ?>
-
-
-    
-
-
-
-

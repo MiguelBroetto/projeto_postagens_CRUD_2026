@@ -22,11 +22,5 @@ if($usuario != "") {
 } else {
     header("location: listar-usuarios.php?tipo=0&mensagem=Usuário [$id] não foi encontrado.");
 }
+
 ?>
-
-
-    
-
-
-
-
