@@ -273,16 +273,15 @@ function paginaRestrita($logado, $pagina = "login.php", $mensagem = "Necessário
 }
 
 
-function buscar_usuario($identificador) {
+function buscar_usuario($identificador, $conn) {
     $usuario = "";
     $sql = "SELECT * FROM `usuarios` WHERE id = $identificador";
     $resultado = mysqli_query($conn, $sql);
-    if(mysqli_num_rows($resultado)>0) {          
+    if($resultado && mysqli_num_rows($resultado) > 0) {          
         while($dados = mysqli_fetch_assoc($resultado)) {
-            $usuario =  $dados;
+            $usuario = $dados;
         }
     }
-    
     return $usuario;
 }
 ?>

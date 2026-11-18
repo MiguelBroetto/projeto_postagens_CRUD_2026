@@ -1,16 +1,14 @@
 <?php
-include 'config.php';
+require 'config.php';
+require 'conexao.php';
+require 'config.postagem.php';
 
 //echo linkAtivo("postagens.php");
 
 echo criarTopo();
-
+echo criarCardsPostagens($conn);
 
 ?>
-    <main>
-<h1>Olá Projeto Postagens</h1>     
-</main>
-
 
 <?php
 echo criarRodape();

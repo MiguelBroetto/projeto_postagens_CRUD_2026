@@ -185,6 +185,81 @@ function criarFormularioEdicaoPostagem($idPostagem, $tituloPostagem, $descricaoP
 </main>';
 }
 
+function listarPostagemDados($conn) {
+    $sql = "SELECT * FROM `postagem`";
+
+    $resultado = mysqli_query($conn, $sql);
+    return $resultado;
+}
+
+
+function criarCardsPostagens($conn) {
+
+    $html = '<section class="area-postagens">
+                <h2>Últimas Postagens</h2>
+                <div class="lista-cards">';
+    
+    $resultado = listarPostagemDados($conn);
+
+    //print_r($resultado);
+
+    if ($resultado && mysqli_num_rows($resultado) > 0) {
+
+        while($dados = mysqli_fetch_assoc($resultado)) {
+
+           // print_r($dados);
+
+            $titulo = htmlspecialchars($dados["titulo"]);
+            $descricao = htmlspecialchars($dados["descricao"]);
+
+
+            $dadosautor = buscar_usuario($dados["autor"], $conn);
+            //print_r($dadosautor["email"]);
+
+            $autor = htmlspecialchars($dadosautor["email"]);
+
+            $data = date("d/m/Y", strtotime($dados["data"]));
+            $hora = date("H:i", strtotime($dados["data"]));
+
+            $html .= '
+                <article class="card-postagem">
+
+                    <h3>'.$titulo.'</h3>                    
+
+                    <p>'.$descricao.'</p>
+
+                    <div class="card-rodape">
+
+                        <span>
+                            <ion-icon name="calendar-outline"></ion-icon>
+                            '.$data.'
+                        </span>
+
+                        <span>
+                            <ion-icon name="time-outline"></ion-icon>
+                            '.$hora.'
+                        </span>
+
+
+                        <span>
+                            <ion-icon name="person-circle-outline"></ion-icon>
+                            '.$autor.'
+                        </span>                        
+
+                    </div>
+
+                </article>';
+        }
+
+    } else {
+        $html .= '<p>Nenhuma postagem encontrada.</p>';
+    }
+
+    $html .= '</div></section>';
+
+    return $html;
+}
+
 /*
 editarPostagem(1, 'Starlink do Leo', 'Acessivel R$ 9,99', '2026-10-29 14:26:19', 3, $conn))
 listarPostagem($conn);

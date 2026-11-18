@@ -303,3 +303,79 @@ td {
     resize: vertical;
     min-height: 120px;
 }
+
+/*CARD POSTAGEM*/
+
+/* Área das postagens */
+.area-postagens {
+    width: 90%;
+    max-width: 1200px;
+    margin: 30px auto;
+}
+
+.area-postagens h2 {
+    color: #363636;
+    margin-bottom: 25px;
+}
+
+/* Organização dos cards */
+.lista-cards {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit, minmax(280px, 1fr)
+    );
+    gap: 20px;
+}
+
+/* Card individual */
+.card-postagem {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-top: 5px solid #E66610;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 3px 10px #00000015;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    transition: 0.3s;
+}
+
+.card-postagem:hover {
+    box-shadow: 0 6px 18px #00000025;
+    transform: translateY(-3px);
+}
+
+.card-postagem h3 {
+    color: #363636;
+    font-size: 20px;
+}
+
+.card-postagem p {
+    color: #555;
+    line-height: 1.6;
+    flex-grow: 1;
+    overflow-wrap: anywhere;
+    white-space: pre-line;
+}
+
+/* Rodapé do card */
+.card-rodape {
+    border-top: 1px solid #eee;
+    padding-top: 12px;
+
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    color: #777;
+    font-size: 13px;
+}
+
+.card-rodape ion-icon {
+    color: #E66610;
+    vertical-align: middle;
+}
